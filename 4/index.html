@@ -55,7 +55,7 @@ return Math.floor(Math.random() * (max - min) + min )
 
 function loop() {
     requestAnimationFrame(loop);
-    if (++count <4)   {
+    if (++count < 4)   {
         return;
     }
 
@@ -103,6 +103,25 @@ snake.cells.forEach(function(cell, index){;
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
     }
+    // warunek przegranej
+    for(let i = index + 1; i < snake.cells.length; i++){
+        if(cell.x === snake.cells[i].x && cell.y === snake.cells[i].y ) {
+    // co ma sie wydarzyc na przegranej
+    snake.x = 160;
+    snake.y = 160;
+    snake.cells = [];
+    snake.maxCells = 4;
+    snake.dx = grid;
+    snake.dy = 0;
+
+    apple.x = getRandomInt(0, 25) * grid;
+    apple.y = getRandomInt(0, 25) * grid;
+
+        }
+
+    
+    
+    }
 });
 
 
@@ -110,23 +129,23 @@ snake.cells.forEach(function(cell, index){;
 }
 
 document.addEventListener('keydown', function(e){
-        if (e.which === 37) {
+        if (e.which === 37 && snake.dx === 0) {
             snake.dx = -grid;
             snake.dy = 0;
             console.log("strzalka w lewo");
         }
-       else if (e.which === 38){
+       else if (e.which === 38 && snake.dy === 0){
         snake.dx = 0;
         snake.dy = -grid;
              console.log("strzalka w gore");
         }
-       else if (e.which === 39) {
+       else if (e.which === 39 && snake.dx === 0) {
         snake.dx = grid;
         snake.dy = 0;
 
             console.log("strzalka w prawo");
         }
-        else if (e.which === 40) {
+        else if (e.which === 40 && snake.dy === 0) {
             snake.dx = 0;
             snake.dy = grid;
             console.log("strzalka w dol");
