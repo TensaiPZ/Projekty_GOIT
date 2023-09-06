@@ -26,8 +26,24 @@ function setupSquares(){
         squares[i].computedStyleMap.backgroundColor = colors[i];
         squares[i].addEventListener('click', function(){
             let clickedColor = this.style.backgroundColor;
-            
+            if(clickedColor === pickedColor){
+
+                messageDisplay.textContent = "Correct";
+                resetButton.textContent = "Play again";
+
+            }
+
+            else{
+
+                messageDisplay.textContent = "Try again";
+            }
+
             
         });
     }
+}
+
+function chooseColor() {
+    let random = Math.floor(Math.random() * colors.length);
+    return colors [random]; 
 }
