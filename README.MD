@@ -1,1 +1,0 @@
-Repozytorium z wykonanymi projektami podczas zajęć
